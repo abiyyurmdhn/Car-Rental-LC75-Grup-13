@@ -1,4 +1,66 @@
 // Bagian Priji
+#include <stdio.h>
+#include <string.h>
+
+struct Mobil {
+    int id;
+    char nama[50];
+    int harga;
+};
+
+void menu_awal();
+void menu_owner();
+void menu_penyewa();
+
+void tambah_mobil(struct Mobil data[], int *jumlah);
+void tampil_mobil(struct Mobil data[], int jumlah);
+void urutkan_harga(struct Mobil data[], int jumlah);
+void simpan_file(struct Mobil data[], int jumlah);
+void baca_file(struct Mobil data[], int *jumlah);
+
+void sewa_mobil(struct Mobil data[], int jumlah);
+
+int main() {
+    struct Mobil data_mobil[100];
+    int jumlah = 0;
+    int pilihan;
+
+    baca_file(data_mobil, &jumlah);
+
+    do {
+        menu_awal();
+        printf("Masukkan pilihan: ");
+        scanf("%d", &pilihan);
+        getchar();
+
+        if (pilihan == 1) {
+            int kode;
+            printf("Masukkan Kode Owner: ");
+            scanf("%d", &kode);
+            getchar();
+
+            if (kode == 12345) {
+                int pilih_owner;
+                do {
+                    menu_owner();
+                    printf("Pilih menu: ");
+                    scanf("%d", &pilih_owner);
+                    getchar();
+
+                    if (pilih_owner == 1)
+                        tambah_mobil(data_mobil, &jumlah);
+                    else if (pilih_owner == 2)
+                        tampil_mobil(data_mobil, jumlah);
+                    else if (pilih_owner == 3)
+                        urutkan_harga(data_mobil, jumlah);
+                    else if (pilih_owner == 4)
+                        simpan_file(data_mobil, jumlah);
+                } while (pilih_owner != 5);
+            } else {
+                printf("Kode owner salah!\n");
+            }
+        }
+
 
 // Bagian Nabil
 
