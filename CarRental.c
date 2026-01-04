@@ -61,8 +61,67 @@ int main() {
             }
         }
 
-
 // Bagian Nabil
+ else if (pilihan == 2) {
+            int pilih_penyewa;
+            do {
+                menu_penyewa();
+                printf("Pilih menu: ");
+                scanf("%d", &pilih_penyewa);
+                getchar();
+
+                if (pilih_penyewa == 1)
+                    tampil_mobil(data_mobil, jumlah);
+                else if (pilih_penyewa == 2)
+                    sewa_mobil(data_mobil, jumlah);
+
+            } while (pilih_penyewa != 3);
+        }
+
+    } while (pilihan != 3);
+
+    return 0;
+}
+
+void menu_awal() {
+    printf("\n===== SISTEM RENTAL MOBIL =====\n");
+    printf("1. Owner\n");
+    printf("2. Penyewa\n");
+    printf("3. Keluar\n");
+}
+
+void menu_owner() {
+    printf("\n--- MENU OWNER ---\n");
+    printf("1. Tambah Data Mobil\n");
+    printf("2. Tampilkan Data Mobil\n");
+    printf("3. Urutkan Harga Sewa\n");
+    printf("4. Simpan Data ke File\n");
+    printf("5. Kembali\n");
+}
+
+void menu_penyewa() {
+    printf("\n--- MENU PENYEWA ---\n");
+    printf("1. Lihat Daftar Mobil\n");
+    printf("2. Sewa Mobil\n");
+    printf("3. Kembali\n");
+}
+
+void tambah_mobil(struct Mobil data[], int *jumlah) {
+    printf("Masukkan ID Mobil: ");
+    scanf("%d", &data[*jumlah].id);
+    getchar();
+
+    printf("Masukkan Nama Mobil: ");
+    fgets(data[*jumlah].nama, sizeof(data[*jumlah].nama), stdin);
+    data[*jumlah].nama[strcspn(data[*jumlah].nama, "\n")] = '\0';
+
+    printf("Masukkan Harga Sewa per Hari: ");
+    scanf("%d", &data[*jumlah].harga);
+    getchar();
+
+    (*jumlah)++;
+    printf("Data mobil berhasil ditambahkan.\n");
+}
 
 // Bagian Abiyyu
 void tampil_mobil(struct Mobil data[], int jumlah) {
